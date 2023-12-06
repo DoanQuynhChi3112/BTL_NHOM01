@@ -15,6 +15,7 @@ namespace BTLNHOM01.Data
         public DbSet<BTLNHOM01.Models.Account> Account { get; set; } = default!;
         public DbSet<BaiTapLon.Models.NhanVien> NhanVien { get; set; } = default!;
         public DbSet<BTLNHOM01.Models.PhieuNhap> PhieuNhap { get; set; } = default!;
+        public DbSet<BTLNHOM01.Models.phieuxuat> phieuxuat { get; set; } = default!;
         
     }
 }
