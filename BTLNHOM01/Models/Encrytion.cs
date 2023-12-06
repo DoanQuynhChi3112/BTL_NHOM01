@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 
 
-namespace BaiTapLon.Models
+namespace BTLNHOM01.Models
 {
     public class Encrytion
     {
@@ -19,6 +19,16 @@ namespace BaiTapLon.Models
     internal class FormsAuthentication
     {
         internal static string HashPasswordForStoringInConfigFile(string v1, string v2)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void SetAuthCookie(string userName, bool v)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void SignOut()
         {
             throw new NotImplementedException();
         }
