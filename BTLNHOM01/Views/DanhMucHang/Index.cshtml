@@ -4,44 +4,50 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h2 class="w3-center w3-text-blue" style=" font-family: Times New Roman; font-size:50px ">Danh Mục Hàng</h2>
+@Styles.Render("~/Content/css")
 
 <p>
-    <a asp-action="Create">Create New</a>
+    @Html.ActionLink("Tạo Mới Dữ Liệu", "Create")
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.TenHang)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DonViTinh)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SoLuong)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.GiaSP)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TenHang)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DonViTinh)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SoLuong)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GiaSP)
-            </td>
+<table class="w3-table-all w3-hoverable " style="font-family: Times New Roman; font-size:20px">
+    <tr class="w3-blue-grey">
+        <th>
+            <label>Mã sản phẩm</label>
+        </th>
+        <th>
+            <label>Tên sản phẩm</label>
+        </th>
+        <th>
+            <label>Đơn vị tính</label>
+        </th>
+        <th>
+            <label>Số lượng</label>
+        </th>
+        <th>
+            <label>Gía sản phẩm</label>
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.TenHang)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TenHang)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DonViTinh)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.SoLuong)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.GiaSP)
+    </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.MaHang">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.MaHang">Details</a> |

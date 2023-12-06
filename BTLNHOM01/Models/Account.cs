@@ -15,7 +15,7 @@ namespace BTLNHOM01.Models
         public string UserName { get; set; }
         [Required(ErrorMessage = "Mật khẩu không được để trống")]
         [DataType(DataType.Password)]
-        public required string PassWord { get; set; }
+        public string PassWord { get; set; }
 
     }
 }
