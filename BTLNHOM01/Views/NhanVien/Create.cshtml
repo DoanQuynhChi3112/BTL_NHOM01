@@ -1,0 +1,48 @@
+@model BaiTapLon.Models.NhanVien
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>NhanVien</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MaNV" class="control-label"></label>
+                <input asp-for="MaNV" class="form-control" />
+                <span asp-validation-for="MaNV" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TenNV" class="control-label"></label>
+                <input asp-for="TenNV" class="form-control" />
+                <span asp-validation-for="TenNV" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SoDT" class="control-label"></label>
+                <input asp-for="SoDT" class="form-control" />
+                <span asp-validation-for="SoDT" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DiaChi" class="control-label"></label>
+                <input asp-for="DiaChi" class="form-control" />
+                <span asp-validation-for="DiaChi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

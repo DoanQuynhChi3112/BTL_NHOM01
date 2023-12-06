@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\BTL_PTPMQL_NHOM01\\BTLNHOM01\\BTLNHOM01.csproj": {}
+    "C:\\BTL_PTPMQL_Nhom01\\BTLNHOM01\\BTLNHOM01.csproj": {}
   },
   "projects": {
-    "C:\\BTL_PTPMQL_NHOM01\\BTLNHOM01\\BTLNHOM01.csproj": {
+    "C:\\BTL_PTPMQL_Nhom01\\BTLNHOM01\\BTLNHOM01.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\BTL_PTPMQL_NHOM01\\BTLNHOM01\\BTLNHOM01.csproj",
+        "projectUniqueName": "C:\\BTL_PTPMQL_Nhom01\\BTLNHOM01\\BTLNHOM01.csproj",
         "projectName": "BTLNHOM01",
-        "projectPath": "C:\\BTL_PTPMQL_NHOM01\\BTLNHOM01\\BTLNHOM01.csproj",
+        "projectPath": "C:\\BTL_PTPMQL_Nhom01\\BTLNHOM01\\BTLNHOM01.csproj",
         "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "C:\\BTL_PTPMQL_NHOM01\\BTLNHOM01\\obj\\",
+        "outputPath": "C:\\BTL_PTPMQL_Nhom01\\BTLNHOM01\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -37,6 +37,32 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SQLite": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

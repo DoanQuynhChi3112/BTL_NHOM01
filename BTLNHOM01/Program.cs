@@ -1,4 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+using BTLNHOM01.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<ApplicationDbcontext>(options => 
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection") 
+    ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.")));
+
+
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -25,3 +34,4 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
