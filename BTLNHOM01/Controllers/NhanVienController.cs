@@ -7,12 +7,14 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BTLNHOM01.Data;
 using BaiTapLon.Models;
+using BTLNHOM01.Models.Process;
 
 namespace BTLNHOM01.Controllers
 {
     public class NhanVienController : Controller
     {
         private readonly ApplicationDbcontext _context;
+        private ExcelProcess _excelPro = new ExcelProcess();
 
         public NhanVienController(ApplicationDbcontext context)
         {
@@ -152,6 +154,50 @@ namespace BTLNHOM01.Controllers
         private bool NhanVienExists(string id)
         {
             return _context.NhanVien.Any(e => e.MaNV == id);
+        }
+        public IActionResult Upload()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Upload(IFormFile file)
+        {
+            if (file!=null)
+                {
+                    string fileExtension = Path.GetExtension(file.FileName);
+                    if (fileExtension != ".xls" && fileExtension != ".xlsx")
+                    {
+                        ModelState.AddModelError("", "Please choose excel file to upload!");
+                    }
+                    else
+                    {
+                        //rename file when upload to server
+                        var filePath = Path.Combine(Directory.GetCurrentDirectory() + "/Uploads/Excels", "File" + DateTime.Now.Day + DateTime.Now.Hour + DateTime.Now.Minute + DateTime.Now.Millisecond + fileExtension);
+                        var fileLocation = new FileInfo(filePath).ToString();
+                        if (file.Length > 0)
+                        {
+                            using (var stream = new FileStream(filePath, FileMode.Create))
+                            {
+                                //save file to server
+                                await file.CopyToAsync(stream);
+                                //read data from file and write to database
+                                var dt = _excelPro.ExcelToDataTable(fileLocation);
+                                for(int i = 0; i < dt.Rows.Count; i++)
+                                {
+                                    var nv = new NhanVien();
+                                    nv.MaNV = dt.Rows[i][0].ToString();
+                                    nv.TenNV = dt.Rows[i][1].ToString();
+                                    nv.SoDT = dt.Rows[i][2].ToString();
+                                    _context.Add(nv);
+                                }
+                                await _context.SaveChangesAsync();
+                                return RedirectToAction(nameof(Index));
+                            }
+                        }
+                    }
+                }
+            
+            return View();
         }
     }
 }

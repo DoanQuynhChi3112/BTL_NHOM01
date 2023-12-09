@@ -276,3 +276,7 @@ C:\BTL_PTPMQL_Nhom01\BTLNHOM01\obj\Debug\net8.0\refint\BTLNHOM01.dll
 C:\BTL_PTPMQL_Nhom01\BTLNHOM01\obj\Debug\net8.0\BTLNHOM01.pdb
 C:\BTL_PTPMQL_Nhom01\BTLNHOM01\obj\Debug\net8.0\BTLNHOM01.genruntimeconfig.cache
 C:\BTL_PTPMQL_Nhom01\BTLNHOM01\obj\Debug\net8.0\ref\BTLNHOM01.dll
+C:\BTL_PTPMQL_NHOM01\BTLNHOM01\bin\Debug\net8.0\EPPlus.dll
+C:\BTL_PTPMQL_NHOM01\BTLNHOM01\bin\Debug\net8.0\EPPlus.Interfaces.dll
+C:\BTL_PTPMQL_NHOM01\BTLNHOM01\bin\Debug\net8.0\EPPlus.System.Drawing.dll
+C:\BTL_PTPMQL_NHOM01\BTLNHOM01\bin\Debug\net8.0\Microsoft.IO.RecyclableMemoryStream.dll

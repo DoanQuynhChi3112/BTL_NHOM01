@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\BTL_PTPMQL_Nhom01\\BTLNHOM01\\BTLNHOM01.csproj": {}
+    "C:\\BTL_PTPMQL_NHOM01\\BTLNHOM01\\BTLNHOM01.csproj": {}
   },
   "projects": {
-    "C:\\BTL_PTPMQL_Nhom01\\BTLNHOM01\\BTLNHOM01.csproj": {
+    "C:\\BTL_PTPMQL_NHOM01\\BTLNHOM01\\BTLNHOM01.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\BTL_PTPMQL_Nhom01\\BTLNHOM01\\BTLNHOM01.csproj",
+        "projectUniqueName": "C:\\BTL_PTPMQL_NHOM01\\BTLNHOM01\\BTLNHOM01.csproj",
         "projectName": "BTLNHOM01",
-        "projectPath": "C:\\BTL_PTPMQL_Nhom01\\BTLNHOM01\\BTLNHOM01.csproj",
+        "projectPath": "C:\\BTL_PTPMQL_NHOM01\\BTLNHOM01\\BTLNHOM01.csproj",
         "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "C:\\BTL_PTPMQL_Nhom01\\BTLNHOM01\\obj\\",
+        "outputPath": "C:\\BTL_PTPMQL_NHOM01\\BTLNHOM01\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -38,6 +38,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "EPPlus": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
