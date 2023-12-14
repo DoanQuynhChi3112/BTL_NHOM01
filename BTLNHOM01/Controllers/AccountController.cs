@@ -44,7 +44,7 @@ namespace BTLNHOM01.Controllers
         }
 
         // GET: Account/Create
-        public IActionResult Create()
+        public IActionResult Login()
         {
             return View();
         }
@@ -54,7 +54,7 @@ namespace BTLNHOM01.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserName,PassWord")] Account account)
+        public async Task<IActionResult> Login([Bind("UserName,PassWord")] Account account)
         {
             if (ModelState.IsValid)
             {
@@ -66,7 +66,7 @@ namespace BTLNHOM01.Controllers
         }
 
         // GET: Account/Edit/5
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Register(string id)
         {
             if (id == null)
             {
@@ -86,7 +86,7 @@ namespace BTLNHOM01.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("UserName,PassWord")] Account account)
+        public async Task<IActionResult> Register(string id, [Bind("UserName,PassWord")] Account account)
         {
             if (id != account.UserName)
             {
@@ -115,43 +115,6 @@ namespace BTLNHOM01.Controllers
             }
             return View(account);
         }
-
-        // GET: Account/Delete/5
-        public async Task<IActionResult> Delete(string id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var account = await _context.Account
-                .FirstOrDefaultAsync(m => m.UserName == id);
-            if (account == null)
-            {
-                return NotFound();
-            }
-
-            return View(account);
-        }
-
-        // POST: Account/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
-        {
-            var account = await _context.Account.FindAsync(id);
-            if (account != null)
-            {
-                _context.Account.Remove(account);
-            }
-
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool AccountExists(string id)
-        {
-            return _context.Account.Any(e => e.UserName == id);
-        }
+   
     }
 }
