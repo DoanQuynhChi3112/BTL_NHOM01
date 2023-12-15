@@ -4,9 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <style>
 #customers {
   font-family: Arial, Helvetica, sans-serif;
@@ -32,31 +30,19 @@
 }
 </style>
 
-<h1>ĐƠN HÀNG</h1>
+<h2 class="w3-center w3-text-blue" style=" font-family: Times New Roman; font-size:50px "> Đơn Hàng </h2>
+<p>
+    <a asp-action="Create">Tạo dữ liệu mới</a>
+</p>
 <table id="customers">
   <tr>
-    <th>Mã khách hàng </th>
-    <th>Date</th>
-    <th>Mã nhân viên</th>
+    <th> Mã khách hàng </th>
+    <th> Date </th>
+    <th> Mã nhân viên </th>
+    <th> Action </th>
   </tr> 
-</table>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.MaKH)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreateDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MaNV)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
+  <tr>           
+    @foreach (var item in Model) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.MaKH)
@@ -73,6 +59,7 @@
                 <a asp-action="Delete" asp-route-id="@item.DonHangID">Delete</a>
             </td>
         </tr>
-}
+        }
+</table>
     </tbody>
 </table>

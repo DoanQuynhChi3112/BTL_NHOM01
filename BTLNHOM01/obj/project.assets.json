@@ -8657,19 +8657,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Admin\\.nuget\\packages\\": {}
+    "C:\\Users\\admin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\PTPMQL\\BaiTapLon\\BTL_NHOM01\\BTLNHOM01\\BTLNHOM01.csproj",
+      "projectUniqueName": "C:\\BTL_PTPMQL_NHOM01\\BTLNHOM01\\BTLNHOM01.csproj",
       "projectName": "BTLNHOM01",
-      "projectPath": "F:\\PTPMQL\\BaiTapLon\\BTL_NHOM01\\BTLNHOM01\\BTLNHOM01.csproj",
-      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "F:\\PTPMQL\\BaiTapLon\\BTL_NHOM01\\BTLNHOM01\\obj\\",
+      "projectPath": "C:\\BTL_PTPMQL_NHOM01\\BTLNHOM01\\BTLNHOM01.csproj",
+      "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+      "outputPath": "C:\\BTL_PTPMQL_NHOM01\\BTLNHOM01\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
