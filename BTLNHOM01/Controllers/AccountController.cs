@@ -115,6 +115,10 @@ namespace BTLNHOM01.Controllers
             }
             return View(account);
         }
-   
+
+        private bool AccountExists(string userName)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

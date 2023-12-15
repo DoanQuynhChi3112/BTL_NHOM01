@@ -280,3 +280,7 @@ C:\BTL_PTPMQL_NHOM01\BTLNHOM01\bin\Debug\net8.0\EPPlus.dll
 C:\BTL_PTPMQL_NHOM01\BTLNHOM01\bin\Debug\net8.0\EPPlus.Interfaces.dll
 C:\BTL_PTPMQL_NHOM01\BTLNHOM01\bin\Debug\net8.0\EPPlus.System.Drawing.dll
 C:\BTL_PTPMQL_NHOM01\BTLNHOM01\bin\Debug\net8.0\Microsoft.IO.RecyclableMemoryStream.dll
+C:\BTL_PTPMQL_NHOM01\BTLNHOM01\obj\Debug\net8.0\BTLNHOM01.MvcApplicationPartsAssemblyInfo.cs
+C:\BTL_PTPMQL_NHOM01\BTLNHOM01\bin\Debug\net8.0\JetBrains.Annotations.dll
+C:\BTL_PTPMQL_NHOM01\BTLNHOM01\bin\Debug\net8.0\X.PagedList.dll
+C:\BTL_PTPMQL_NHOM01\BTLNHOM01\bin\Debug\net8.0\X.PagedList.Mvc.Core.dll
