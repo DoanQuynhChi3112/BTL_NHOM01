@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\BTL_PTPMQL_NHOM01\\BTLNHOM01\\BTLNHOM01.csproj": {}
+    "F:\\PTPMQL\\BaiTapLon\\BTL_NHOM01\\BTLNHOM01\\BTLNHOM01.csproj": {}
   },
   "projects": {
-    "C:\\BTL_PTPMQL_NHOM01\\BTLNHOM01\\BTLNHOM01.csproj": {
+    "F:\\PTPMQL\\BaiTapLon\\BTL_NHOM01\\BTLNHOM01\\BTLNHOM01.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\BTL_PTPMQL_NHOM01\\BTLNHOM01\\BTLNHOM01.csproj",
+        "projectUniqueName": "F:\\PTPMQL\\BaiTapLon\\BTL_NHOM01\\BTLNHOM01\\BTLNHOM01.csproj",
         "projectName": "BTLNHOM01",
-        "projectPath": "C:\\BTL_PTPMQL_NHOM01\\BTLNHOM01\\BTLNHOM01.csproj",
-        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "C:\\BTL_PTPMQL_NHOM01\\BTLNHOM01\\obj\\",
+        "projectPath": "F:\\PTPMQL\\BaiTapLon\\BTL_NHOM01\\BTLNHOM01\\BTLNHOM01.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "F:\\PTPMQL\\BaiTapLon\\BTL_NHOM01\\BTLNHOM01\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
