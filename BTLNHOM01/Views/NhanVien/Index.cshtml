@@ -9,23 +9,42 @@
 <p>
     <a asp-action="Create">Thêm nhân viên </a>
 </p>
-<table class="w3-table-all w3-hoverable " style="font-family: Times New Roman; font-size:20px">
-    <tr class="w3-blue-grey">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.TenNV)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SoDT)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DiaChi)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
+<form asp-controller="NhanVien" asp-action="Index">
+    <p>
+        Tìm kiếm: <input type="text" name="SearchString" />
+        <input type="submit" name="Lọc"/> 
+    </p>
+<style>
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+</style>
+<table id="customers">
+  <tr>
+    <th> Tên nhân viên  </th>
+    <th> Số điện thoại </th>
+    <th> Địa chỉ nhân viên </th>
+    <th> Action </th>
+  </tr> 
 @foreach (var item in Model) {
         <tr>
             <td>
