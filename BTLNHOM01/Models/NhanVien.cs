@@ -7,7 +7,7 @@ using System.Web;
 using BTLNHOM01.Models;
 
 
-namespace BaiTapLon.Models
+namespace BTLNHOM01.Models
 {
     [Table("NhanViens")]
     public class NhanVien

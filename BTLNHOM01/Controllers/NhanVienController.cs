@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BTLNHOM01.Data;
-using BaiTapLon.Models;
+using BTLNHOM01.Models;
 using BTLNHOM01.Models.Process;
 
 namespace BTLNHOM01.Controllers
@@ -156,7 +156,7 @@ namespace BTLNHOM01.Controllers
         {
             return _context.NhanVien.Any(e => e.MaNV == id);
         }
-        public IActionResult Upload()
+        public async Task<IActionResult> Upload()
         {
             return View();
         }
@@ -189,6 +189,7 @@ namespace BTLNHOM01.Controllers
                                     nv.MaNV = dt.Rows[i][0].ToString();
                                     nv.TenNV = dt.Rows[i][1].ToString();
                                     nv.SoDT = dt.Rows[i][2].ToString();
+                                    nv.DiaChi = dt.Rows[i][3].ToString();
                                     _context.Add(nv);
                                 }
                                 await _context.SaveChangesAsync();
