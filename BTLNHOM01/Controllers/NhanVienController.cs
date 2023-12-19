@@ -1,3 +1,4 @@
+using System.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -172,11 +173,10 @@ namespace BTLNHOM01.Controllers
                     else
                     {
                         //rename file when upload to server
-                        var filePath = Path.Combine(Directory.GetCurrentDirectory() + "/Uploads/Excels", "File" + DateTime.Now.Day + DateTime.Now.Hour + DateTime.Now.Minute + DateTime.Now.Millisecond + fileExtension);
+                        var fileName = DataSetDateTime.Now.ToShortTimeString() + fileExtension
+                        var filePath = Path.Combine(Directory.GetCurrentDirectory() + "/Uploads/Excels", FileName );
                         var fileLocation = new FileInfo(filePath).ToString();
-                        if (file.Length > 0)
-                        {
-                            using (var stream = new FileStream(filePath, FileMode.Create))
+                        using (var stream = new FileStream(filePath, FileMode.Create))
                             {
                                 //save file to server
                                 await file.CopyToAsync(stream);
