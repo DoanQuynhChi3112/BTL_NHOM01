@@ -161,6 +161,7 @@ namespace BTLNHOM01.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Upload(IFormFile file)
         {
             if (file!=null)
@@ -173,8 +174,8 @@ namespace BTLNHOM01.Controllers
                     else
                     {
                         //rename file when upload to server
-                        var fileName = DataSetDateTime.Now.ToShortTimeString() + fileExtension
-                        var filePath = Path.Combine(Directory.GetCurrentDirectory() + "/Uploads/Excels", FileName );
+                        var fileName = DateTime.Now.ToShortTimeString() + fileExtension;
+                        var filePath = Path.Combine(Directory.GetCurrentDirectory() + "/Upload/Excels", fileName );
                         var fileLocation = new FileInfo(filePath).ToString();
                         using (var stream = new FileStream(filePath, FileMode.Create))
                             {
@@ -193,7 +194,7 @@ namespace BTLNHOM01.Controllers
                                 await _context.SaveChangesAsync();
                                 return RedirectToAction(nameof(Index));
                             }
-                        }
+                        
                     }
                 }
             

@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "LdeRtmPV2YCrCpToAVrbcu7NDVMESnLtLt30u/ZJo1nF07thRH2jCKsWSENJMDPC1a0dh3rjh88ygdWw6HZBdg==",
+  "dgSpecHash": "1fCYn+TgdgpWVofgKgAIye0DiWMJIrVQPMuNcNzmjgZMcYfD6D0+UAYNWcLo8Xb7wz0fQcBtLcMWHFBPkmLTkQ==",
   "success": true,
   "projectFilePath": "C:\\BTL_PTPMQL_NHOM01\\BTLNHOM01\\BTLNHOM01.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\admin\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
-    "C:\\Users\\admin\\.nuget\\packages\\epplus\\7.0.3\\epplus.7.0.3.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\epplus\\7.0.4\\epplus.7.0.4.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\epplus.interfaces\\6.1.1\\epplus.interfaces.6.1.1.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\epplus.system.drawing\\6.1.1\\epplus.system.drawing.6.1.1.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
