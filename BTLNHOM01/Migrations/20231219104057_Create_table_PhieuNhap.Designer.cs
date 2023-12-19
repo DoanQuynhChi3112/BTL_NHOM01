@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BTLNHOM01.Migrations
 {
     [DbContext(typeof(ApplicationDbcontext))]
-    [Migration("20231215065719_Create_table_PhieuNhap")]
+    [Migration("20231219104057_Create_table_PhieuNhap")]
     partial class Create_table_PhieuNhap
     {
         /// <inheritdoc />

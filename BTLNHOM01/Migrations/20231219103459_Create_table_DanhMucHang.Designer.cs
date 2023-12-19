@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BTLNHOM01.Migrations
 {
     [DbContext(typeof(ApplicationDbcontext))]
-    [Migration("20231215063656_Create_table_Account")]
-    partial class Create_table_Account
+    [Migration("20231219103459_Create_table_DanhMucHang")]
+    partial class Create_table_DanhMucHang
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

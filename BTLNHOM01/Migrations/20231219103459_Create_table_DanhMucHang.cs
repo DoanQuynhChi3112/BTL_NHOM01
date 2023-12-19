@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BTLNHOM01.Migrations
 {
     /// <inheritdoc />
-    public partial class Create_table_Account : Migration
+    public partial class Create_table_DanhMucHang : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
