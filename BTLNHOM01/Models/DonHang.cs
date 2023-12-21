@@ -9,13 +9,20 @@ namespace BTLNHOM01.Models
 {
     [Table("DonHangs")]
     public class DonHang
-    {
-        [Key]
+    {       
         public string DonHangID { get; set; } 
+        public string MaHang { get; set; } 
+        [ForeignKey("MaHang")]
+        public DanhMucHang? DanhMucHang { get; set; }
         public string MaKH { get; set; }
+        [ForeignKey("MaKH")]
+        public KhachHang? KhachHang { get; set; }
         [DataType(DataType.Date)]
         public DateTime CreateDate { get; set; }
         public string MaNV { get; set; }
+        [ForeignKey("MaNV")]
+        public NhanVien? NhanVien { get; set; }
+        
         
     }
 }

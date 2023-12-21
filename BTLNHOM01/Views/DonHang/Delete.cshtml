@@ -12,10 +12,16 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MaKH)
+            @Html.DisplayNameFor(model => model.DanhMucHang)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MaKH)
+            @Html.DisplayFor(model => model.DanhMucHang.MaHang)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.KhachHang)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.KhachHang.MaKH)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.CreateDate)
@@ -24,16 +30,16 @@
             @Html.DisplayFor(model => model.CreateDate)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MaNV)
+            @Html.DisplayNameFor(model => model.NhanVien)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MaNV)
+            @Html.DisplayFor(model => model.NhanVien.MaNV)
         </dd>
     </dl>
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="DonHangID" />
-        <input type="submit" value="Delete"  /> |
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
         <a asp-action="Index">Back to List</a>
     </form>
 </div>

@@ -22,7 +22,8 @@ namespace BTLNHOM01.Controllers
         // GET: DonHang
         public async Task<IActionResult> Index()
         {
-            return View(await _context.DonHang.ToListAsync());
+            var applicationDbcontext = _context.DonHang.Include(d => d.DanhMucHang).Include(d => d.KhachHang).Include(d => d.NhanVien);
+            return View(await applicationDbcontext.ToListAsync());
         }
 
         // GET: DonHang/Details/5
@@ -34,6 +35,9 @@ namespace BTLNHOM01.Controllers
             }
 
             var donHang = await _context.DonHang
+                .Include(d => d.DanhMucHang)
+                .Include(d => d.KhachHang)
+                .Include(d => d.NhanVien)
                 .FirstOrDefaultAsync(m => m.DonHangID == id);
             if (donHang == null)
             {
@@ -46,6 +50,9 @@ namespace BTLNHOM01.Controllers
         // GET: DonHang/Create
         public IActionResult Create()
         {
+            ViewData["MaHang"] = new SelectList(_context.DanhMucHang, "MaHang", "MaHang");
+            ViewData["MaKH"] = new SelectList(_context.KhachHang, "MaKH", "MaKH");
+            ViewData["MaNV"] = new SelectList(_context.NhanVien, "MaNV", "MaNV");
             return View();
         }
 
@@ -54,7 +61,7 @@ namespace BTLNHOM01.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DonHangID,MaKH,CreateDate,MaNV")] DonHang donHang)
+        public async Task<IActionResult> Create([Bind("DonHangID,MaHang,MaKH,CreateDate,MaNV")] DonHang donHang)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +69,9 @@ namespace BTLNHOM01.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["MaHang"] = new SelectList(_context.DanhMucHang, "MaHang", "MaHang", donHang.MaHang);
+            ViewData["MaKH"] = new SelectList(_context.KhachHang, "MaKH", "MaKH", donHang.MaKH);
+            ViewData["MaNV"] = new SelectList(_context.NhanVien, "MaNV", "MaNV", donHang.MaNV);
             return View(donHang);
         }
 
@@ -78,6 +88,9 @@ namespace BTLNHOM01.Controllers
             {
                 return NotFound();
             }
+            ViewData["MaHang"] = new SelectList(_context.DanhMucHang, "MaHang", "MaHang", donHang.MaHang);
+            ViewData["MaKH"] = new SelectList(_context.KhachHang, "MaKH", "MaKH", donHang.MaKH);
+            ViewData["MaNV"] = new SelectList(_context.NhanVien, "MaNV", "MaNV", donHang.MaNV);
             return View(donHang);
         }
 
@@ -86,7 +99,7 @@ namespace BTLNHOM01.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("DonHangID,MaKH,CreateDate,MaNV")] DonHang donHang)
+        public async Task<IActionResult> Edit(string id, [Bind("DonHangID,MaHang,MaKH,CreateDate,MaNV")] DonHang donHang)
         {
             if (id != donHang.DonHangID)
             {
@@ -113,6 +126,9 @@ namespace BTLNHOM01.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["MaHang"] = new SelectList(_context.DanhMucHang, "MaHang", "MaHang", donHang.MaHang);
+            ViewData["MaKH"] = new SelectList(_context.KhachHang, "MaKH", "MaKH", donHang.MaKH);
+            ViewData["MaNV"] = new SelectList(_context.NhanVien, "MaNV", "MaNV", donHang.MaNV);
             return View(donHang);
         }
 
@@ -125,6 +141,9 @@ namespace BTLNHOM01.Controllers
             }
 
             var donHang = await _context.DonHang
+                .Include(d => d.DanhMucHang)
+                .Include(d => d.KhachHang)
+                .Include(d => d.NhanVien)
                 .FirstOrDefaultAsync(m => m.DonHangID == id);
             if (donHang == null)
             {

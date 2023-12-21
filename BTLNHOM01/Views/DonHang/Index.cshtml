@@ -37,6 +37,7 @@
 <table id="customers">
   <tr>
     <th> Mã khách hàng </th>
+    <th> Mã hàng </th>
     <th> Date </th>
     <th> Mã nhân viên </th>
     <th> Action </th>
@@ -46,6 +47,9 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.MaKH)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaHang)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CreateDate)

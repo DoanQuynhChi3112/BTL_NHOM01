@@ -65,6 +65,10 @@ namespace BTLNHOM01.Migrations
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("MaHang")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("MaKH")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -74,6 +78,12 @@ namespace BTLNHOM01.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("DonHangID");
+
+                    b.HasIndex("MaHang");
+
+                    b.HasIndex("MaKH");
+
+                    b.HasIndex("MaNV");
 
                     b.ToTable("DonHangs");
                 });
@@ -98,6 +108,28 @@ namespace BTLNHOM01.Migrations
                     b.HasKey("MaKH");
 
                     b.ToTable("KhachHangs");
+                });
+
+            modelBuilder.Entity("BTLNHOM01.Models.NhanVien", b =>
+                {
+                    b.Property<string>("MaNV")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DiaChi")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("SoDT")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TenNV")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("MaNV");
+
+                    b.ToTable("NhanViens");
                 });
 
             modelBuilder.Entity("BTLNHOM01.Models.PhieuNhap", b =>
@@ -168,26 +200,31 @@ namespace BTLNHOM01.Migrations
                     b.ToTable("phieuxuat");
                 });
 
-            modelBuilder.Entity("BaiTapLon.Models.NhanVien", b =>
+            modelBuilder.Entity("BTLNHOM01.Models.DonHang", b =>
                 {
-                    b.Property<string>("MaNV")
-                        .HasColumnType("TEXT");
+                    b.HasOne("BTLNHOM01.Models.DanhMucHang", "DanhMucHang")
+                        .WithMany()
+                        .HasForeignKey("MaHang")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Property<string>("DiaChi")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.HasOne("BTLNHOM01.Models.KhachHang", "KhachHang")
+                        .WithMany()
+                        .HasForeignKey("MaKH")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Property<string>("SoDT")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.HasOne("BTLNHOM01.Models.NhanVien", "NhanVien")
+                        .WithMany()
+                        .HasForeignKey("MaNV")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Property<string>("TenNV")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Navigation("DanhMucHang");
 
-                    b.HasKey("MaNV");
+                    b.Navigation("KhachHang");
 
-                    b.ToTable("NhanViens");
+                    b.Navigation("NhanVien");
                 });
 
             modelBuilder.Entity("BTLNHOM01.Models.PhieuNhap", b =>
