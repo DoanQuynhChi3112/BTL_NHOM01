@@ -12,18 +12,6 @@ namespace BTLNHOM01.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Accounts",
-                columns: table => new
-                {
-                    UserName = table.Column<string>(type: "TEXT", nullable: false),
-                    PassWord = table.Column<string>(type: "TEXT", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Accounts", x => x.UserName);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "DanhMucHangs",
                 columns: table => new
                 {
