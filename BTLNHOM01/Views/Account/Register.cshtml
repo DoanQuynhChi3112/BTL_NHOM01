@@ -1,0 +1,45 @@
+@model BTLNHOM01.Models.Account
+
+@{
+    ViewBag.Title = "Register";
+   
+}
+
+<br />
+<br />
+<br />
+{
+    @Html.AntiForgeryToken()
+
+    <div class="w3-row " style="margin: 0 auto; width: 30em">
+        <div class="w3-card-4 w3-margin-top">
+            <header class="w3-blue w3-center w3-container">
+                <h1>Đăng kí hệ thống</h1>
+            </header>
+            <div class="w3-container">
+                <div class="w3-row w3-margin-top">
+                    <label>Username</label>
+                    <input name="Username" type="text" class="w3-input w3-border  w3-round-large" style="max-width: 30em" placeholder="Tên đăng nhập" required>
+                </div>
+                <div class="w3-row w3-margin-top">
+                    <label>Password</label>
+                    <input name="Password" type="password" class="w3-input w3-border  w3-round-large" style="max-width: 30em" placeholder="Mật khẩu" required>
+                </div>
+                <div class="w3-margin-top">
+                    <input class="w3-check" type="checkbox" checked="checked">
+                    <label>Remember me!</label>
+                </div>
+            </div>
+            <footer class="w3-padding w3-margin-top w3-light-gray">
+                @Html.ActionLink("Quay Lại", "Login", "Account")
+                <input type="submit" value="Đăng Kí" class="btn btn-default" />
+
+            </footer>
+
+        </div>
+
+    </div>}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
