@@ -34,9 +34,9 @@ namespace BTLNHOM01.Controllers
                 };
                 int pagesize = (PageSize ?? 3);
                 ViewBag.psize = PageSize;
-                var model = _context.DanhMucHang.ToList().ToPagedList(page ?? 1, pagesize);
-                var applicationDbcontext = _context.DonHang.Include(d => d.DanhMucHang).Include(d => d.KhachHang).Include(d => d.NhanVien);
-                return View(await applicationDbcontext.ToListAsync());
+                var model = _context.DonHang.ToList().ToPagedList(page ?? 1, pagesize);
+            
+                return View(model);
         }
 
         // GET: DonHang/Details/5
