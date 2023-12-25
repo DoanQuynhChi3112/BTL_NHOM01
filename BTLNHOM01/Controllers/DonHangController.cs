@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BTLNHOM01.Data;
 using BTLNHOM01.Models;
+using X.PagedList;
 
 namespace BTLNHOM01.Controllers
 {
@@ -20,10 +21,22 @@ namespace BTLNHOM01.Controllers
         }
 
         // GET: DonHang
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? page, int? PageSize)
         {
-            var applicationDbcontext = _context.DonHang.Include(d => d.DanhMucHang).Include(d => d.KhachHang).Include(d => d.NhanVien);
-            return View(await applicationDbcontext.ToListAsync());
+             ViewBag.PageSize = new List<SelectListItem>()
+                {
+                    new SelectListItem() { Value="3", Text="3"},
+                    new SelectListItem() { Value="5", Text="5"},
+                    new SelectListItem() { Value="10", Text="10"},
+                    new SelectListItem() { Value="15", Text="15"},
+                    new SelectListItem() { Value="25", Text="25"},
+
+                };
+                int pagesize = (PageSize ?? 3);
+                ViewBag.psize = PageSize;
+                var model = _context.DanhMucHang.ToList().ToPagedList(page ?? 1, pagesize);
+                var applicationDbcontext = _context.DonHang.Include(d => d.DanhMucHang).Include(d => d.KhachHang).Include(d => d.NhanVien);
+                return View(await applicationDbcontext.ToListAsync());
         }
 
         // GET: DonHang/Details/5

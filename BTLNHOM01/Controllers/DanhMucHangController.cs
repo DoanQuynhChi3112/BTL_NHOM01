@@ -20,6 +20,7 @@ namespace BTLNHOM01.Controllers
         {
             _context = context;
         }
+        //Phan trang
         public async Task<IActionResult> Index(int? page, int? PageSize)
         {
             ViewBag.PageSize = new List<SelectListItem>()
@@ -37,12 +38,7 @@ namespace BTLNHOM01.Controllers
                 return View(model);
                          
         }
-
-        // GET: DanhMucHang
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.DanhMucHang.ToListAsync());
-        }
+       
 
         // GET: DanhMucHang/Details/5
         public async Task<IActionResult> Details(string id)
