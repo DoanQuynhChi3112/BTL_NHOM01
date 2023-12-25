@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BTLNHOM01.Data;
 using BTLNHOM01.Models;
+using X.PagedList;
+
 
 namespace BTLNHOM01.Controllers
 {
@@ -19,12 +21,24 @@ namespace BTLNHOM01.Controllers
             _context = context;
         }
 
-        // GET: KhachHang
-        public async Task<IActionResult> Index()
+        // GET: KhachHang-Phan trang
+        public async Task<IActionResult> Index(int? page, int? PageSize)
         {
-            return View(await _context.KhachHang.ToListAsync());
-        }
+            ViewBag.PageSize = new List<SelectListItem>()
+                {
+                    new SelectListItem() { Value="3", Text="3"},
+                    new SelectListItem() { Value="5", Text="5"},
+                    new SelectListItem() { Value="10", Text="10"},
+                    new SelectListItem() { Value="15", Text="15"},
+                    new SelectListItem() { Value="25", Text="25"},
 
+                };
+                int pagesize = (PageSize ?? 3);
+                ViewBag.psize = PageSize;
+                var model = _context.KhachHang.ToList().ToPagedList(page ?? 1, pagesize);
+                return View(model);
+                         
+        }
         // GET: KhachHang/Details/5
         public async Task<IActionResult> Details(string id)
         {
