@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BTLNHOM01.Data;
 using BTLNHOM01.Models;
-using X.PagedList;
 
 namespace BTLNHOM01.Controllers
 {
@@ -21,23 +20,12 @@ namespace BTLNHOM01.Controllers
         }
 
         // GET: phieuxuat
-        public async Task<IActionResult> Index(int? page, int? PageSize)
+        public async Task<IActionResult> Index()
         {
-            ViewBag.PageSize = new List<SelectListItem>()
-                {
-                    new SelectListItem() { Value="3", Text="3"},
-                    new SelectListItem() { Value="5", Text="5"},
-                    new SelectListItem() { Value="10", Text="10"},
-                    new SelectListItem() { Value="15", Text="15"},
-                    new SelectListItem() { Value="25", Text="25"},
-
-                };
-                int pagesize = (PageSize ?? 3);
-                ViewBag.psize = PageSize;
-                var model = _context.phieuxuat.ToList().ToPagedList(page ?? 1, pagesize);
-                return View(model);
-                         
+            var applicationDbcontext = _context.phieuxuat.Include(p => p.DanhMucHang).Include(p => p.DonHang).Include(p => p.NhaCungCap);
+            return View(await applicationDbcontext.ToListAsync());
         }
+
         // GET: phieuxuat/Details/5
         public async Task<IActionResult> Details(string id)
         {
@@ -47,8 +35,10 @@ namespace BTLNHOM01.Controllers
             }
 
             var phieuxuat = await _context.phieuxuat
-                .Include(p => p.DonHangs)
-                .FirstOrDefaultAsync(m => m.MaNV == id);
+                .Include(p => p.DanhMucHang)
+                .Include(p => p.DonHang)
+                .Include(p => p.NhaCungCap)
+                .FirstOrDefaultAsync(m => m.MaPX == id);
             if (phieuxuat == null)
             {
                 return NotFound();
@@ -60,7 +50,9 @@ namespace BTLNHOM01.Controllers
         // GET: phieuxuat/Create
         public IActionResult Create()
         {
+            ViewData["TenHang"] = new SelectList(_context.DanhMucHang, "MaHang", "MaHang");
             ViewData["DonHangID"] = new SelectList(_context.DonHang, "DonHangID", "DonHangID");
+            ViewData["MaNCC"] = new SelectList(_context.NhaCungCap, "MaNCC", "MaNCC");
             return View();
         }
 
@@ -69,7 +61,7 @@ namespace BTLNHOM01.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MaNV,TenNV,DonHangID,TenHang,Soluong,thanhtien,Ngaytao")] phieuxuat phieuxuat)
+        public async Task<IActionResult> Create([Bind("MaPX,DonHangID,TenHang,MaNCC,Soluong,thanhtien,Ngaytao")] phieuxuat phieuxuat)
         {
             if (ModelState.IsValid)
             {
@@ -77,7 +69,9 @@ namespace BTLNHOM01.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["TenHang"] = new SelectList(_context.DanhMucHang, "MaHang", "MaHang", phieuxuat.TenHang);
             ViewData["DonHangID"] = new SelectList(_context.DonHang, "DonHangID", "DonHangID", phieuxuat.DonHangID);
+            ViewData["MaNCC"] = new SelectList(_context.NhaCungCap, "MaNCC", "MaNCC", phieuxuat.MaNCC);
             return View(phieuxuat);
         }
 
@@ -94,7 +88,9 @@ namespace BTLNHOM01.Controllers
             {
                 return NotFound();
             }
+            ViewData["TenHang"] = new SelectList(_context.DanhMucHang, "MaHang", "MaHang", phieuxuat.TenHang);
             ViewData["DonHangID"] = new SelectList(_context.DonHang, "DonHangID", "DonHangID", phieuxuat.DonHangID);
+            ViewData["MaNCC"] = new SelectList(_context.NhaCungCap, "MaNCC", "MaNCC", phieuxuat.MaNCC);
             return View(phieuxuat);
         }
 
@@ -103,9 +99,9 @@ namespace BTLNHOM01.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("MaNV,TenNV,DonHangID,TenHang,Soluong,thanhtien,Ngaytao")] phieuxuat phieuxuat)
+        public async Task<IActionResult> Edit(string id, [Bind("MaPX,DonHangID,TenHang,MaNCC,Soluong,thanhtien,Ngaytao")] phieuxuat phieuxuat)
         {
-            if (id != phieuxuat.MaNV)
+            if (id != phieuxuat.MaPX)
             {
                 return NotFound();
             }
@@ -119,7 +115,7 @@ namespace BTLNHOM01.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!phieuxuatExists(phieuxuat.MaNV))
+                    if (!phieuxuatExists(phieuxuat.MaPX))
                     {
                         return NotFound();
                     }
@@ -130,7 +126,9 @@ namespace BTLNHOM01.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["TenHang"] = new SelectList(_context.DanhMucHang, "MaHang", "MaHang", phieuxuat.TenHang);
             ViewData["DonHangID"] = new SelectList(_context.DonHang, "DonHangID", "DonHangID", phieuxuat.DonHangID);
+            ViewData["MaNCC"] = new SelectList(_context.NhaCungCap, "MaNCC", "MaNCC", phieuxuat.MaNCC);
             return View(phieuxuat);
         }
 
@@ -143,8 +141,10 @@ namespace BTLNHOM01.Controllers
             }
 
             var phieuxuat = await _context.phieuxuat
-                .Include(p => p.DonHangs)
-                .FirstOrDefaultAsync(m => m.MaNV == id);
+                .Include(p => p.DanhMucHang)
+                .Include(p => p.DonHang)
+                .Include(p => p.NhaCungCap)
+                .FirstOrDefaultAsync(m => m.MaPX == id);
             if (phieuxuat == null)
             {
                 return NotFound();
@@ -170,7 +170,7 @@ namespace BTLNHOM01.Controllers
 
         private bool phieuxuatExists(string id)
         {
-            return _context.phieuxuat.Any(e => e.MaNV == id);
+            return _context.phieuxuat.Any(e => e.MaPX == id);
         }
     }
 }

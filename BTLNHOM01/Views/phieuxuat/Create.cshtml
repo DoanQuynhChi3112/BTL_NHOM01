@@ -13,14 +13,9 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="MaNV" class="control-label"></label>
-                <input asp-for="MaNV" class="form-control" />
-                <span asp-validation-for="MaNV" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TenNV" class="control-label"></label>
-                <input asp-for="TenNV" class="form-control" />
-                <span asp-validation-for="TenNV" class="text-danger"></span>
+                <label asp-for="MaPX" class="control-label"></label>
+                <input asp-for="MaPX" class="form-control" />
+                <span asp-validation-for="MaPX" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="DonHangID" class="control-label"></label>
@@ -28,8 +23,11 @@
             </div>
             <div class="form-group">
                 <label asp-for="TenHang" class="control-label"></label>
-                <input asp-for="TenHang" class="form-control" />
-                <span asp-validation-for="TenHang" class="text-danger"></span>
+                <select asp-for="TenHang" class ="form-control" asp-items="ViewBag.TenHang"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaNCC" class="control-label"></label>
+                <select asp-for="MaNCC" class ="form-control" asp-items="ViewBag.MaNCC"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Soluong" class="control-label"></label>
@@ -47,7 +45,7 @@
                 <span asp-validation-for="Ngaytao" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create"  />
+                <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>

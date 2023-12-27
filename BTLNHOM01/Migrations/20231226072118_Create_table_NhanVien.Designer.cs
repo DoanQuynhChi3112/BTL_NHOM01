@@ -3,6 +3,7 @@ using System;
 using BTLNHOM01.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BTLNHOM01.Migrations
 {
     [DbContext(typeof(ApplicationDbcontext))]
-    partial class ApplicationDbcontextModelSnapshot : ModelSnapshot
+    [Migration("20231226072118_Create_table_NhanVien")]
+    partial class Create_table_NhanVien
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.0");
@@ -149,6 +152,10 @@ namespace BTLNHOM01.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("MaNV")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("Ngaytao")
                         .HasColumnType("TEXT");
 
@@ -167,8 +174,6 @@ namespace BTLNHOM01.Migrations
 
                     b.HasIndex("MaNCC");
 
-                    b.HasIndex("TenHang");
-
                     b.ToTable("PhieuNhaps");
                 });
 
@@ -182,6 +187,10 @@ namespace BTLNHOM01.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("MaNCC")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("MaNV")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -201,11 +210,7 @@ namespace BTLNHOM01.Migrations
 
                     b.HasKey("MaPX");
 
-                    b.HasIndex("DonHangID");
-
                     b.HasIndex("MaNCC");
-
-                    b.HasIndex("TenHang");
 
                     b.ToTable("phieuxuats");
                 });
@@ -245,40 +250,16 @@ namespace BTLNHOM01.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BTLNHOM01.Models.DanhMucHang", "DanhMucHang")
-                        .WithMany()
-                        .HasForeignKey("TenHang")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("DanhMucHang");
-
                     b.Navigation("NhaCungCap");
                 });
 
             modelBuilder.Entity("BTLNHOM01.Models.phieuxuat", b =>
                 {
-                    b.HasOne("BTLNHOM01.Models.DonHang", "DonHang")
-                        .WithMany()
-                        .HasForeignKey("DonHangID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("BTLNHOM01.Models.NhaCungCap", "NhaCungCap")
                         .WithMany()
                         .HasForeignKey("MaNCC")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("BTLNHOM01.Models.DanhMucHang", "DanhMucHang")
-                        .WithMany()
-                        .HasForeignKey("TenHang")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("DanhMucHang");
-
-                    b.Navigation("DonHang");
 
                     b.Navigation("NhaCungCap");
                 });

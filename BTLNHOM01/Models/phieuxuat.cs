@@ -7,18 +7,23 @@ using System.Web;
 
 namespace BTLNHOM01.Models
 {
-    [Table("phieuxuat")]
+    [Table("phieuxuats")]
     public class phieuxuat
     {
         [Key]
-        public string MaNV { get; set; }
-        public string TenNV { get; set; }
+         public string MaPX{ get; set; }    
         public string DonHangID { get; set; }
+        [ForeignKey("DonHangID")]
+        public DonHang? DonHang { get; set; }
         public string TenHang { get; set; }
+        [ForeignKey("TenHang")]
+        public DanhMucHang? DanhMucHang { get; set; }
+        public string MaNCC { get; set; }
+        [ForeignKey("MaNCC")]
+        public NhaCungCap? NhaCungCap { get; set; }
         public int Soluong { get; set; }
         public string thanhtien { get; set; }
         [DataType(DataType.Date)]
-        public DateTime Ngaytao { get; set; }
-        public virtual DonHang DonHangs { get; set; }
+        public DateTime Ngaytao { get; set; }       
     }
 }

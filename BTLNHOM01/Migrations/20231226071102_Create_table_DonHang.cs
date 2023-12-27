@@ -41,6 +41,20 @@ namespace BTLNHOM01.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "NhaCungCaps",
+                columns: table => new
+                {
+                    MaNCC = table.Column<string>(type: "TEXT", nullable: false),
+                    TenNCC = table.Column<string>(type: "TEXT", nullable: false),
+                    DiachiNCC = table.Column<string>(type: "TEXT", nullable: false),
+                    SoDTNCC = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_NhaCungCaps", x => x.MaNCC);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "NhanViens",
                 columns: table => new
                 {
@@ -54,6 +68,8 @@ namespace BTLNHOM01.Migrations
                     table.PrimaryKey("PK_NhanViens", x => x.MaNV);
                 });
 
+            
+            
             migrationBuilder.CreateTable(
                 name: "DonHangs",
                 columns: table => new
@@ -87,52 +103,6 @@ namespace BTLNHOM01.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "PhieuNhap",
-                columns: table => new
-                {
-                    MaNV = table.Column<string>(type: "TEXT", nullable: false),
-                    TenNV = table.Column<string>(type: "TEXT", nullable: false),
-                    DonHangID = table.Column<string>(type: "TEXT", nullable: false),
-                    TenHang = table.Column<string>(type: "TEXT", nullable: false),
-                    Soluong = table.Column<int>(type: "INTEGER", nullable: false),
-                    thanhtien = table.Column<string>(type: "TEXT", nullable: false),
-                    Ngaytao = table.Column<DateTime>(type: "TEXT", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PhieuNhap", x => x.MaNV);
-                    table.ForeignKey(
-                        name: "FK_PhieuNhap_DonHangs_DonHangID",
-                        column: x => x.DonHangID,
-                        principalTable: "DonHangs",
-                        principalColumn: "DonHangID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "phieuxuat",
-                columns: table => new
-                {
-                    MaNV = table.Column<string>(type: "TEXT", nullable: false),
-                    TenNV = table.Column<string>(type: "TEXT", nullable: false),
-                    DonHangID = table.Column<string>(type: "TEXT", nullable: false),
-                    TenHang = table.Column<string>(type: "TEXT", nullable: false),
-                    Soluong = table.Column<int>(type: "INTEGER", nullable: false),
-                    thanhtien = table.Column<string>(type: "TEXT", nullable: false),
-                    Ngaytao = table.Column<DateTime>(type: "TEXT", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_phieuxuat", x => x.MaNV);
-                    table.ForeignKey(
-                        name: "FK_phieuxuat_DonHangs_DonHangID",
-                        column: x => x.DonHangID,
-                        principalTable: "DonHangs",
-                        principalColumn: "DonHangID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_DonHangs_MaHang",
                 table: "DonHangs",
@@ -147,32 +117,15 @@ namespace BTLNHOM01.Migrations
                 name: "IX_DonHangs_MaNV",
                 table: "DonHangs",
                 column: "MaNV");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PhieuNhap_DonHangID",
-                table: "PhieuNhap",
-                column: "DonHangID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_phieuxuat_DonHangID",
-                table: "phieuxuat",
-                column: "DonHangID");
         }
 
+            
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Accounts");
-
-            migrationBuilder.DropTable(
-                name: "PhieuNhap");
-
-            migrationBuilder.DropTable(
-                name: "phieuxuat");
-
-            migrationBuilder.DropTable(
                 name: "DonHangs");
+          
 
             migrationBuilder.DropTable(
                 name: "DanhMucHangs");
@@ -182,6 +135,9 @@ namespace BTLNHOM01.Migrations
 
             migrationBuilder.DropTable(
                 name: "NhanViens");
+
+            migrationBuilder.DropTable(
+                name: "NhaCungCaps");
         }
     }
 }

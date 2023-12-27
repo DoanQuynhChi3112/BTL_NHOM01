@@ -39,7 +39,6 @@ namespace BTLNHOM01.Controllers
                          
         }
        
-
         // GET: DanhMucHang/Details/5
         public async Task<IActionResult> Details(string id)
         {

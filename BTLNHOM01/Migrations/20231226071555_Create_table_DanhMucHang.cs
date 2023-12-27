@@ -5,7 +5,7 @@
 namespace BTLNHOM01.Migrations
 {
     /// <inheritdoc />
-    public partial class Create_table_PhieuNhap : Migration
+    public partial class Create_table_DanhMucHang : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

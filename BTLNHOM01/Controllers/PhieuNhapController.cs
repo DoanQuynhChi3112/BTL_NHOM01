@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BTLNHOM01.Data;
 using BTLNHOM01.Models;
-using X.PagedList;
 
 namespace BTLNHOM01.Controllers
 {
@@ -21,23 +20,12 @@ namespace BTLNHOM01.Controllers
         }
 
         // GET: PhieuNhap
-        public async Task<IActionResult> Index(int? page, int? PageSize)
+        public async Task<IActionResult> Index()
         {
-            ViewBag.PageSize = new List<SelectListItem>()
-                {
-                    new SelectListItem() { Value="3", Text="3"},
-                    new SelectListItem() { Value="5", Text="5"},
-                    new SelectListItem() { Value="10", Text="10"},
-                    new SelectListItem() { Value="15", Text="15"},
-                    new SelectListItem() { Value="25", Text="25"},
-
-                };
-                int pagesize = (PageSize ?? 3);
-                ViewBag.psize = PageSize;
-                var model = _context.PhieuNhap.ToList().ToPagedList(page ?? 1, pagesize);
-                return View(model);
-                         
+            var applicationDbcontext = _context.PhieuNhap.Include(p => p.DanhMucHang).Include(p => p.NhaCungCap);
+            return View(await applicationDbcontext.ToListAsync());
         }
+
         // GET: PhieuNhap/Details/5
         public async Task<IActionResult> Details(string id)
         {
@@ -47,8 +35,9 @@ namespace BTLNHOM01.Controllers
             }
 
             var phieuNhap = await _context.PhieuNhap
-                .Include(p => p.DonHangs)
-                .FirstOrDefaultAsync(m => m.MaNV == id);
+                .Include(p => p.DanhMucHang)
+                .Include(p => p.NhaCungCap)
+                .FirstOrDefaultAsync(m => m.MaPN == id);
             if (phieuNhap == null)
             {
                 return NotFound();
@@ -60,7 +49,8 @@ namespace BTLNHOM01.Controllers
         // GET: PhieuNhap/Create
         public IActionResult Create()
         {
-            ViewData["DonHangID"] = new SelectList(_context.DonHang, "DonHangID", "DonHangID");
+            ViewData["TenHang"] = new SelectList(_context.DanhMucHang, "MaHang", "MaHang");
+            ViewData["MaNCC"] = new SelectList(_context.NhaCungCap, "MaNCC", "MaNCC");
             return View();
         }
 
@@ -69,7 +59,7 @@ namespace BTLNHOM01.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MaNV,TenNV,DonHangID,TenHang,Soluong,thanhtien,Ngaytao")] PhieuNhap phieuNhap)
+        public async Task<IActionResult> Create([Bind("MaPN,TenHang,MaNCC,Soluong,thanhtien,Ngaytao")] PhieuNhap phieuNhap)
         {
             if (ModelState.IsValid)
             {
@@ -77,7 +67,8 @@ namespace BTLNHOM01.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DonHangID"] = new SelectList(_context.DonHang, "DonHangID", "DonHangID", phieuNhap.DonHangID);
+            ViewData["TenHang"] = new SelectList(_context.DanhMucHang, "MaHang", "MaHang", phieuNhap.TenHang);
+            ViewData["MaNCC"] = new SelectList(_context.NhaCungCap, "MaNCC", "MaNCC", phieuNhap.MaNCC);
             return View(phieuNhap);
         }
 
@@ -94,7 +85,8 @@ namespace BTLNHOM01.Controllers
             {
                 return NotFound();
             }
-            ViewData["DonHangID"] = new SelectList(_context.DonHang, "DonHangID", "DonHangID", phieuNhap.DonHangID);
+            ViewData["TenHang"] = new SelectList(_context.DanhMucHang, "MaHang", "MaHang", phieuNhap.TenHang);
+            ViewData["MaNCC"] = new SelectList(_context.NhaCungCap, "MaNCC", "MaNCC", phieuNhap.MaNCC);
             return View(phieuNhap);
         }
 
@@ -103,9 +95,9 @@ namespace BTLNHOM01.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("MaNV,TenNV,DonHangID,TenHang,Soluong,thanhtien,Ngaytao")] PhieuNhap phieuNhap)
+        public async Task<IActionResult> Edit(string id, [Bind("MaPN,TenHang,MaNCC,Soluong,thanhtien,Ngaytao")] PhieuNhap phieuNhap)
         {
-            if (id != phieuNhap.MaNV)
+            if (id != phieuNhap.MaPN)
             {
                 return NotFound();
             }
@@ -119,7 +111,7 @@ namespace BTLNHOM01.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PhieuNhapExists(phieuNhap.MaNV))
+                    if (!PhieuNhapExists(phieuNhap.MaPN))
                     {
                         return NotFound();
                     }
@@ -130,7 +122,8 @@ namespace BTLNHOM01.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DonHangID"] = new SelectList(_context.DonHang, "DonHangID", "DonHangID", phieuNhap.DonHangID);
+            ViewData["TenHang"] = new SelectList(_context.DanhMucHang, "MaHang", "MaHang", phieuNhap.TenHang);
+            ViewData["MaNCC"] = new SelectList(_context.NhaCungCap, "MaNCC", "MaNCC", phieuNhap.MaNCC);
             return View(phieuNhap);
         }
 
@@ -143,8 +136,9 @@ namespace BTLNHOM01.Controllers
             }
 
             var phieuNhap = await _context.PhieuNhap
-                .Include(p => p.DonHangs)
-                .FirstOrDefaultAsync(m => m.MaNV == id);
+                .Include(p => p.DanhMucHang)
+                .Include(p => p.NhaCungCap)
+                .FirstOrDefaultAsync(m => m.MaPN == id);
             if (phieuNhap == null)
             {
                 return NotFound();
@@ -170,7 +164,7 @@ namespace BTLNHOM01.Controllers
 
         private bool PhieuNhapExists(string id)
         {
-            return _context.PhieuNhap.Any(e => e.MaNV == id);
+            return _context.PhieuNhap.Any(e => e.MaPN == id);
         }
     }
 }

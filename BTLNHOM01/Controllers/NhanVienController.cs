@@ -22,24 +22,19 @@ namespace BTLNHOM01.Controllers
         {
             _context = context;
         }
-
+        
         // GET: NhanVien
-         public async Task<IActionResult> Index(int? page, int? PageSize)
+        public async Task<IActionResult> Index(string searchString)
         {
-            ViewBag.PageSize = new List<SelectListItem>()
-                {
-                    new SelectListItem() { Value="3", Text="3"},
-                    new SelectListItem() { Value="5", Text="5"},
-                    new SelectListItem() { Value="10", Text="10"},
-                    new SelectListItem() { Value="15", Text="15"},
-                    new SelectListItem() { Value="25", Text="25"},
+             
+            var NhanVien = from m in _context.NhanVien
+                select m;
 
-                };
-                int pagesize = (PageSize ?? 3);
-                ViewBag.psize = PageSize;
-                var model = _context.NhanVien.ToList().ToPagedList(page ?? 1, pagesize);
-                return View(model);
-                         
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                NhanVien = NhanVien.Where(s => s. MaNV!.Contains(searchString));
+                }
+            return View(await NhanVien.ToListAsync());
         }
 
         // GET: NhanVien/Details/5

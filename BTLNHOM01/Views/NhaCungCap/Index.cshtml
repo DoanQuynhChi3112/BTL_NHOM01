@@ -1,0 +1,67 @@
+@model IEnumerable<BTLNHOM01.Models.NhaCungCap>
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<h2 class="w3-center w3-text" style=" font-family: Times New Roman; font-size:50px ">Nhà cung cấp</h2>
+
+<p>
+    <a asp-action="Create">Thêm nhà cung cấp mới</a>
+</p>
+<style>
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+</style>
+<table id="customers">
+  <tr>
+    <th> Tên nhà cung cấp  </th>  
+    <th> Địa chỉ </th>
+    <th> SĐT </th>
+   
+    <th> Action </th>
+  </tr> 
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenNCC)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiachiNCC)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoDTNCC)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.MaNCC">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.MaNCC">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.MaNCC">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
